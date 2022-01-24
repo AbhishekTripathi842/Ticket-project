@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Config Demos</title>
+</head>
+<body>
+<style>
+    @media screen and (max-width: 991px) {
+        #logoDiv {
+            display: none;
+        }}
+</style>
+<div style="height: 700px; width: 100%">
+<div id="logoDiv" ><h1>Site Logo and header stuff</h1></div>
+<script src="https://www.tn-apis.com/maps/v3/MapAndLayout?websiteConfigId=690&eventName=Hamilton&venue=Citizens+Opera+House&dateTime=202109051300&consumerKey=QgtuDr9cN1Vrt3VBRUv4_QMjrfAa"></script>
+<script src="https://s3.amazonaws.com/tn-maps-api-demo/TicketData.js"></script>
+<script>
+    
+    console.log(document.location)
+	// if(document.location != "https://s3.amazonaws.com/tn-maps-api-demo/DemoPage.html"){
+	// 	document.location = "https://s3.amazonaws.com/tn-maps-api-demo/DemoPage.html";
+	// }
+	
+	//Required integration
+	   Seatics.Presentation.redirectToCheckout = function(ticketGroup, quantitySelected) {
+	        console.log(ticketGroup);
+	        alert("Replace with your own go-to-checkout  method");
+	   }
+	   
+	   setTimeout(function(){	Seatics.addTicketData(demoTicketData); }, 3000);
+	
+	//All settings below this line are optional
+	
+  //COLOR SCHEME SETTINGS
+	Seatics.config.levelColors = ["#d86f6f", "#e2a6a6", "#f4ad58", "#ffd797", "#bc91c1", "#e5cae2", "#66b6dd", "#a3ddf8", "#abcb59", "#d2e08b", "#bfa082", "#d9d7ba", "#589caf", "#bcd3e7", "#fff871", "#fff7a9", "#9bc9a2", "#c7ddc8"];
+    Seatics.config.zoneColors = ["#d86f6f", "#e2a6a6", "#f4ad58", "#ffd797", "#bc91c1", "#e5cae2", "#66b6dd", "#a3ddf8", "#abcb59", "#d2e08b", "#bfa082", "#d9d7ba", "#589caf", "#bcd3e7", "#fff871", "#fff7a9", "#9bc9a2", "#c7ddc8"];
+    //Seatics.config.levelColors = ["#66b6dd"]; //for single color maps
+	Seatics.config.useSuperLevels = true; //false for full palette, true for simplified palette
+    Seatics.config.sectionNoTicketsColor = "#e2e2e2";
+    
+  //SELECTION SCHEME SETTINGS
+    Seatics.config.selectionScheme = 0; // options: 0, 1
+	Seatics.config.selectionColor = "#ffff00";
+    Seatics.config.selectionPulseFromColor = null;
+  
+  //CTA BUTTON CUSTOMIZATION
+    //Seatics.config.buyButtonContentHtml = '<div style="background:#33CC33; color:#ffffff; padding: 8px 5px; font-weight:bold; margin-right:5px;">Buy</div>';
+    Seatics.config.preCheckoutButtonHtml = 'Go to Secure Checkout';
+  
+  //PRE-CHECKOUT INTERSTITIAL CUSTOMIZATION
+    Seatics.config.tgGuaranteeNoteHtml = '200% Worry-Free Guarantee';
+    //Seatics.config.preCheckoutButtonHtml = 'Buy Tickets';
+  
+  //UNMAPPED INVENTORY SETTINGS
+    Seatics.config.ticketSeparationOptions = {
+			packages: Seatics.TicketGroupSeparationOptions.Integrate,
+			parking: Seatics.TicketGroupSeparationOptions.Separate,
+			passes: Seatics.TicketGroupSeparationOptions.Separate,
+			hotels: Seatics.TicketGroupSeparationOptions.Separate,
+			unmappedFlex: Seatics.TicketGroupSeparationOptions.Integrate,
+			unmappedStandard: Seatics.TicketGroupSeparationOptions.Separate
+		};
+
+  //INVENTORY HIGHLIGHTING
+    //Seatics.config.tgMarkHtml = '<span style="vertical-align:middle; padding-left:2px;">&malt;</span>',
+	//Seatics.config.tgMarkTooltipText = 'These tickets are featured as a great value.';
+
+  //DEFAULT SORT
+    Seatics.config.defaultSort = Seatics.SortOptions.PriceAsc;  //options: PriceAsc, PriceDesc, SectionAsc, SectionDesc, Marked
+  
+  //STICKY FILTERS
+    Seatics.config.saveFilterOptions = true;
+  
+  //MY LIST FEATURE
+    Seatics.config.enableMyList = false;
+  
+  //MOBILE HEADER CONFIGURATION
+    Seatics.config.eventInfoLeftCol = '<a href="/"><img src=https://s3.amazonaws.com/ticketnetwork/demo/tr/TR_logo_small2x.png height="55px" width="55px" style="padding:5px; vertical-align:top;" /></a>',
+    Seatics.config.eventInfoRightCol = '<a href="tel:8608675309"><span style="font-size:40px; vertical-align:top; padding:5px;" class="glyphicon glyphicon-earphone"></span></a>';
+
+  //MOBILE MAP SETTINGS
+    Seatics.config.smallScreenMapLayout = Seatics.SmallScreenMapOptions.HiddenWithPreview; //options: FullyHidden, HalfShown, HiddenWithPreview
+  
+  //ZOOM CONTROLS ON MOBILE
+    Seatics.config.showZoomControls = true;
+  
+  //SINGLE CLICK TO CHECKOUT
+    Seatics.config.skipPrecheckoutMobile = false;
+    Seatics.config.skipPrecheckoutDesktop = false;
+  
+  //DESKTOP DISCLAIMER 
+    //Seatics.config.desktopEventInfoRightCol = '<div class="event-info-disclaimer"><a id="event-info-guarantee-show" class="event-info-guarantee-show" href="javascript:">200% Worry-Free Guarantee</a><br><span>&#x2713; Example Ticket Site is a resale marketplace, not the ticket seller.</span><br><span>&#x2713; Prices are set by third-party sellers and may be above or below face value.</span><br><span>&#x2713; Your seats are together unless otherwise noted.</span><br><span>&#x2713; All sales are final.</span><br><div id="event-info-guarantee" class="event-info-guarantee" style="display: none;"><a id="event-info-guarantee-close" class="event-info-guarantee-close icon-cancel" href="javascript:void(0)"></a><h3>We stand behind you 200%.</h3><br><p>Whether you are buying or selling tickets on our site, we safeguard your transaction.</p><br /><p><strong>You will receive a 200% refund for your tickets if:</strong></p><ul><li>Your order was accepted but not delivered by the seller.</li><li>Your order was accepted but not shipped in time for the event.</li><li>Your tickets were not valid for entry.<sup>(1)</sup></li></ul><br /><p><strong>But we do not stop there. You also have our 100% Money Back Guarantee if:</strong></p><ul><li>Your event is cancelled and is not rescheduled.<sup>(2)</sup></li></ul><br /><p><strong>Notes:</strong></p><p>(1) Verified proof must be provided in letter form from the venue. Written or stamped "voids" do not constitute verified proof.</p><p>(2) 100% refund for a cancelled event does not include shipping.</p></div></div>';
+  
+  //DESKTOP LAYOUT SETTINGS
+    Seatics.config.ticketListOnRight = true;
+    Seatics.config.mapContained = false;
+    Seatics.config.legendExpanded = false;
+
+    //Determines whether to show cents in prices  
+	Seatics.config.showCents = false;
+
+</script>
+</div>
+</body>
+</html>
+
+
+
+
+
